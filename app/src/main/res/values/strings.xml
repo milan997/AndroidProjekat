@@ -6,4 +6,6 @@
     <string name="readPost">Read Post</string>
     <string name="settings">Settings</string>
     <string name="homePage">Home Page</string>
+    <string name="user_name">user name</string>
+    <string name="password">password</string>
 </resources>
