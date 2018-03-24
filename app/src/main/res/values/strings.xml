@@ -8,4 +8,11 @@
     <string name="homePage">Home Page</string>
     <string name="user_name">user name</string>
     <string name="password">password</string>
+    <string name="notifications">Notifications</string>
+    <string name="filter">Filter</string>
+    <string name="sortPostsBy">Sort Posts By</string>
+    <string name="sortCommentsBy">Sort Comments By</string>
+    <string name="showPostsFrom">Show Posts From</string>
+    <string name="enterNewAdminName">Enter new admin name:</string>
+
 </resources>

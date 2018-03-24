@@ -1,6 +1,7 @@
 package com.example.alowishusad.androidprojekat;
 
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,11 +15,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // Loading default preferences
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     }
 
     public void btnStartsPostsActivity (View view) {
-        String userName = ((EditText) findViewById(R.id.userNameInput)).getText().toString();
-        String password = ((EditText) findViewById(R.id.passwordInput)).getText().toString();
+        String userName = ((EditText) findViewById(R.id.userNameInput)).getText().toString().trim();
+        String password = ((EditText) findViewById(R.id.passwordInput)).getText().toString().trim();
 
 
         Intent intent = new Intent(LoginActivity.this, PostsActivity.class);
