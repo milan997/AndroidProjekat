@@ -15,17 +15,22 @@
     <string name="showPostsFrom">Show Posts From</string>
     <string name="enterNewAdminName">Enter new admin name:</string>
     <string name="title">Title</string>
-    <string name="location">Location</string>
     <string name="what_do_you_wanna_share">What do you wanna share?</string>
     <string name="photo">Photo</string>
     <string name="gallery">Gallery</string>
     <string name="title_activity_read_post">ReadPostActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="comments">Comments</string>
-    <string name="post">Post</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="post">post</string>
+    <string name="comments">comments</string>
+    <string name="Post">Post</string>
+    <string name="postTitle">Post Title</string>
+    <string name="location">Location</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nibh nibh, bibendum ut fringilla ac, tempus vel mi. Donec dapibus quam eget egestas rutrum.</string>
+
 
 </resources>
