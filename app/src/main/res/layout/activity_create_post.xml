@@ -3,7 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="14dp"
+    android:layout_marginRight="14dp"
+    android:orientation="vertical"
     tools:context="com.example.alowishusad.androidprojekat.CreatePostActivity">
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/title"
+        />
+
+    <EditText
+        android:id="@+id/etLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/location"
+        />
+
+    <EditText
+        android:id="@+id/etPostText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:hint="@string/what_do_you_wanna_share" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+
+        <Button
+            android:id="@+id/Gallery"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/gallery"
+            android:onClick="btnOpenGallery"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="110dp"
+            />
+
+        <Button
+            android:id="@+id/btnPhoto"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/photo"
+
+            android:onClick="btnOpenCamera"
+
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
 
 
 </LinearLayout>
