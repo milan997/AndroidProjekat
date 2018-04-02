@@ -1,32 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawerLayout"
     android:layout_height="match_parent"
-    android:layout_marginRight="14dp"
-    android:layout_marginLeft="14dp"
-    android:orientation="vertical"
-    tools:context="com.example.alowishusad.androidprojekat.PostsActivity">
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
-        android:id="@+id/btnCreatePost"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/createPost"
-        android:onClick="btnCreatePost"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
-        android:id="@+id/btnReadPost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/readPost"
-        android:onClick="btnReadPost"/>
+        <include
+            android:id="@+id/appbar"
+            layout="@layout/app_bar" />
 
-    <Button
-        android:id="@+id/btnSettings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/settings"
-        android:onClick="btnSettings"/>
-</LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="14dp"
+            android:layout_marginLeft="14dp"
+            android:orientation="vertical"
+            tools:context="com.example.alowishusad.androidprojekat.PostsActivity">
+
+
+
+            <Button
+                android:id="@+id/btnCreatePost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/createPost"
+                android:onClick="btnCreatePost"/>
+
+            <Button
+                android:id="@+id/btnReadPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/readPost"
+                android:onClick="btnReadPost"/>
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings"
+                android:onClick="btnSettings"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/drawerBtnCreatePost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/createPost"/>
+
+            <Button
+                android:id="@+id/drawerBtnReadPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/readPost"/>
+
+            <Button
+                android:id="@+id/drawerBtnSettingsPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings"/>
+        </LinearLayout>
+
+    </android.support.design.widget.NavigationView>
+
+
+</android.support.v4.widget.DrawerLayout>

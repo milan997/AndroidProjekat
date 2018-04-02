@@ -1,63 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="14dp"
-    android:layout_marginRight="14dp"
-    android:orientation="vertical"
     tools:context="com.example.alowishusad.androidprojekat.CreatePostActivity">
 
-    <EditText
-        android:id="@+id/etTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/title"
-        />
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/app_bar" />
 
-    <EditText
-        android:id="@+id/etLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/location"
-        />
-
-    <EditText
-        android:id="@+id/etPostText"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="top"
-        android:hint="@string/what_do_you_wanna_share" />
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp">
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/appbar"
+        android:orientation="vertical"
+        tools:context="com.example.alowishusad.androidprojekat.CreatePostActivity">
 
 
-        <Button
-            android:id="@+id/Gallery"
-            android:layout_width="100dp"
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/gallery"
-            android:onClick="btnOpenGallery"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="110dp"
+            android:hint="@string/title"
             />
 
-        <Button
-            android:id="@+id/btnPhoto"
-            android:layout_width="100dp"
+        <EditText
+            android:id="@+id/etLocation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/photo"
-
-            android:onClick="btnOpenCamera"
-
-            android:layout_alignParentRight="true"
+            android:hint="@string/location"
             />
 
-    </RelativeLayout>
+        <EditText
+            android:id="@+id/etPostText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:hint="@string/what_do_you_wanna_share" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
 
 
-</LinearLayout>
+            <Button
+                android:id="@+id/Gallery"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/gallery"
+                android:onClick="btnOpenGallery"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="110dp"
+                />
+
+            <Button
+                android:id="@+id/btnPhoto"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/photo"
+
+                android:onClick="btnOpenCamera"
+
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+

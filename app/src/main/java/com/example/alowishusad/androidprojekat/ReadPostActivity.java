@@ -1,6 +1,9 @@
 package com.example.alowishusad.androidprojekat;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.app.Fragment;
@@ -29,10 +32,18 @@ public class ReadPostActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_post);
+
+        toolbar = findViewById(R.id.appbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -66,7 +77,8 @@ public class ReadPostActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

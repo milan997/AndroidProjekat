@@ -8,6 +8,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import customPreferences.DatePreference;
@@ -28,7 +29,6 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.preferences);
-
 
         // OVO JE FRANKENSTAJN VARIJANTA < OPASNO
         final DatePreference dp= (DatePreference) findPreference("dpShowFrom");

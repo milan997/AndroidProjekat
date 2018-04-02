@@ -12,7 +12,7 @@
         android:id="@+id/cbTest"
         android:key="checkBox"
         android:defaultValue="true"
-        android:title="Check this by default"/>
+        android:title="Check this by default" />
 
     <SwitchPreference
         android:id="@+id/notificationSwitch"
