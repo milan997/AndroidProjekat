@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -40,6 +41,9 @@ public class ReadPostActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    // POst that the activity is showing
+    private Post activityPost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,12 @@ public class ReadPostActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+
+        Post post = (Post) getIntent().getSerializableExtra("post");
+        this.activityPost = post;
+
+
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -99,19 +109,30 @@ public class ReadPostActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        // The post that the adapter is showing
+        private Post fragmentPost;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
+            this.fragmentPost = activityPost;
         }
+
 
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("post", this.fragmentPost);
             switch (position) {
                 case 0:
-                    return new ReadPostFragment();
+                    ReadPostFragment rpf = new ReadPostFragment();
+                    rpf.setArguments(bundle);
+                    return rpf;
                 case 1:
-                    return new ReadCommentsFragment();
+                    ReadCommentsFragment rcf = new ReadCommentsFragment();
+                    rcf.setArguments(bundle);
+                    return rcf;
                 default:
                     return null;
             }

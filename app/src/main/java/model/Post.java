@@ -3,13 +3,14 @@ package model;
 import android.graphics.Bitmap;
 import android.location.Location;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Class represents a post in app
  */
-public class Post {
+public class Post implements Serializable{
     private int id;
     private boolean deleted;
 
@@ -23,6 +24,16 @@ public class Post {
     private List<Comment> comments;
     private int likes;
     private int dislikes;
+
+    public Post(){
+
+    }
+
+    public Post(String title, String description){
+        this.title = title;
+        this.description = description;
+    }
+
 
     public int getId() {
         return id;

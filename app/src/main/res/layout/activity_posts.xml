@@ -28,26 +28,15 @@
 
 
 
-            <Button
-                android:id="@+id/btnCreatePost"
+            <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/createPost"
-                android:onClick="btnCreatePost"/>
+                android:layout_height="match_parent"
+                android:id="@+id/listViewPosts">
 
-            <Button
-                android:id="@+id/btnReadPost"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/readPost"
-                android:onClick="btnReadPost"/>
+            </ListView>
 
-            <Button
-                android:id="@+id/btnSettings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/settings"
-                android:onClick="btnSettings"/>
+
+
         </LinearLayout>
 
     </LinearLayout>

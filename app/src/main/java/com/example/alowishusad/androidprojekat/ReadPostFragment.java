@@ -29,12 +29,10 @@ public class ReadPostFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View myInflatedView = inflater.inflate(R.layout.fragment_read_post, container,false);
-
-        Post post = new Post();
+////////////
+        Post post = (Post) getArguments().getSerializable("post");
         post.setDate(new Date());
-        post.setDescription("Ksdasd sadskdak k asdi i i asdkkasd kk ; ; ; dkasjkdka  l a,s d sl l ");
-        post.setTitle("Naslov");
-
+////////////////
         TextView postTitle = (TextView) myInflatedView.findViewById(R.id.postTitle);
         postTitle.setText(post.getTitle());
 
