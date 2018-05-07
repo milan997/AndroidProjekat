@@ -1,9 +1,10 @@
 package model;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Comment {
+public class Comment implements Serializable{
     private int id;
     private boolean deleted;
 
@@ -15,6 +16,27 @@ public class Comment {
     private int likes;
     private int dislikes;
 
+    public Comment(){
+
+    }
+
+    public Comment(String title, String description, Date date, int likes, int dislikes){
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.likes = likes;
+        this.dislikes = dislikes;
+    }
+
+    /**
+     * Metoda kojom dobijamo 'popularnost' odredjenog posta.
+     * Posto u projektnoj specifikaciji popularnost kao takva nije definisana, definisem je kao razlika lajkova i dislajkova
+     *
+     * @return integer - razlika lajkova i dislajkova
+     */
+    public int getPopularity(){
+        return likes - dislikes;
+    }
 
     public int getId() {
         return id;

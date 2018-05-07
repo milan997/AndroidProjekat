@@ -31,7 +31,6 @@ public class ReadPostFragment extends Fragment {
         View myInflatedView = inflater.inflate(R.layout.fragment_read_post, container,false);
 ////////////
         Post post = (Post) getArguments().getSerializable("post");
-        post.setDate(new Date());
 ////////////////
         TextView postTitle = (TextView) myInflatedView.findViewById(R.id.postTitle);
         postTitle.setText(post.getTitle());
@@ -45,5 +44,6 @@ public class ReadPostFragment extends Fragment {
 
         return myInflatedView;
     }
+
 
 }

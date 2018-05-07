@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.alowishusad.androidprojekat.SettingsFragment">
 
-    <TextView
+    <ListView
+        android:id="@+id/listViewComments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="hello blank fragment" />
+></ListView>
 
 </LinearLayout>

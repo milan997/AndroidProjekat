@@ -4,11 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.alowishusad.androidprojekat.ReadCommentsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/listViewComments"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Comments will be here ako bog da"
-        android:textSize="20dp"/>
+        android:layout_height="match_parent"></ListView>
 
 </FrameLayout>

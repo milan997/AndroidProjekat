@@ -4,13 +4,14 @@ import android.graphics.Bitmap;
 import android.location.Location;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Class represents a post in app
  */
-public class Post implements Serializable{
+public class Post implements Serializable, Comparable<Post>{
     private int id;
     private boolean deleted;
 
@@ -18,10 +19,10 @@ public class Post implements Serializable{
     private String description;
     private Bitmap photo;
     private User author;
-    private Date date;
+    private Date date = new Date();
     private Location location;
-    private List<Tag> tags;
-    private List<Comment> comments;
+    private List<Tag> tags = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
     private int likes;
     private int dislikes;
 
@@ -34,6 +35,34 @@ public class Post implements Serializable{
         this.description = description;
     }
 
+    public Post(String title, String description, Date date){
+        this.title = title;
+        this.description = description;
+        this.date = date;
+    }
+
+    public Post(String title, String description, Date date, int likes, int dislikes){
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.likes = likes;
+        this.dislikes = dislikes;
+    }
+
+    @Override
+    public int compareTo(Post other) {
+        return date.compareTo(other.getDate());
+    }
+
+    /**
+     * Metoda kojom dobijamo 'popularnost' odredjenog posta.
+     * Posto u projektnoj specifikaciji popularnost kao takva nije definisana, definisem je kao razlika lajkova i dislajkova
+     *
+     * @return integer - razlika lajkova i dislajkova
+     */
+    public int getPopularity(){
+        return likes - dislikes;
+    }
 
     public int getId() {
         return id;
@@ -99,12 +128,25 @@ public class Post implements Serializable{
         this.tags = tags;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    /**
+     * Filters comments by deleted attribute
+     * @return returns a list of not-deleted comments
+     */
+    public ArrayList<Comment> getComments() {
+        ArrayList<Comment> retval = new ArrayList<>();
+        for(Comment comment : comments){
+            if(!comment.isDeleted())
+                retval.add(comment);
+        }
+        return retval;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    /**
+     * Adds a comment to the post
+     * @param comment
+     */
+    public void addComment(Comment comment){
+        comments.add(comment);
     }
 
     public int getLikes() {
