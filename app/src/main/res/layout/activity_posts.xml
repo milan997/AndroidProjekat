@@ -54,6 +54,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <Button
+                android:id="@+id/drawerBtnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/logout"
+                android:onClick="btnLogout"/>
+
+            <Button
                 android:id="@+id/drawerBtnCreatePost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -31,6 +31,7 @@
     <string name="postTitle">Post Title</string>
     <string name="location">Location</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nibh nibh, bibendum ut fringilla ac, tempus vel mi. Donec dapibus quam eget egestas rutrum.</string>
+    <string name="logout">LOGOUT</string>
 
 
 </resources>
