@@ -51,6 +51,14 @@ public class Post implements Serializable, Comparable<Post>{
         this.dislikes = dislikes;
     }
 
+    public void like(){
+        this.likes++;
+    }
+
+    public void dislike(){
+        this.dislikes++;
+    }
+
     @Override
     public int compareTo(Post other) {
         return date.compareTo(other.getDate());

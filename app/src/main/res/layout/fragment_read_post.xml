@@ -64,5 +64,36 @@
         android:layout_marginTop="5dp"
         android:text="@string/lorem"/>
 
+    <ImageButton
+        android:id="@+id/btnPostLike"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/like"
+        />
+
+
+    <ImageButton
+        android:id="@+id/btnPostDislike"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/btnPostLike"
+        android:layout_margin="5dp"
+        android:background="@drawable/dislike"
+        />
+
+    <TextView
+        android:id="@+id/postPopularity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:layout_toStartOf="@id/btnPostDislike"
+        android:text="popularity"
+        android:textSize="40dp"/>
+
 
 </RelativeLayout>

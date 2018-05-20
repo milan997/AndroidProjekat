@@ -13,4 +13,12 @@
         android:title="@string/comment"
         app:showAsAction="ifRoom"
         android:icon="@drawable/comment" />
+
+    <item
+        android:id="@+id/deletePost"
+        android:title="@string/delete1"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/delete"
+        android:visible="false" />
+
 </menu>

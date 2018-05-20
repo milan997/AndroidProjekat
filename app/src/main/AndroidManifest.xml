@@ -33,7 +33,7 @@
             android:title="@string/homePage" />
         <activity
             android:name=".ReadPostActivity"
-            android:label="@string/readPost"
+            android:label="@string/details"
             android:parentActivityName=".PostsActivity"></activity>
     </application>
 

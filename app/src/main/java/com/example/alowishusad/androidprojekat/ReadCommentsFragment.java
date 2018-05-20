@@ -40,6 +40,7 @@ public class ReadCommentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         myInflatedView = inflater.inflate(R.layout.fragment_read_comments, container,false);
+
         return myInflatedView;
     }
 

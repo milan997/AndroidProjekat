@@ -28,6 +28,14 @@ public class Comment implements Serializable{
         this.dislikes = dislikes;
     }
 
+    public void like(){
+        this.likes++;
+    }
+
+    public void dislike(){
+        this.dislikes++;
+    }
+
     /**
      * Metoda kojom dobijamo 'popularnost' odredjenog posta.
      * Posto u projektnoj specifikaciji popularnost kao takva nije definisana, definisem je kao razlika lajkova i dislajkova

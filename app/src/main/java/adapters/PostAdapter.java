@@ -52,13 +52,10 @@ public class PostAdapter  extends ArrayAdapter<Post>{
         String strDate = (post.getDate() != null) ? dateFormat.format(post.getDate()) : "nodate";
         tvDate.setText(strDate);
 
-        String popularity = Integer.toString(post.getPopularity());
-        if (post.getPopularity()> 0){
-            tvPopularity.setTextColor(Color.GREEN);
-        } else if(post.getPopularity() < 0){
-            tvPopularity.setTextColor(Color.RED);
-        }
-        tvPopularity.setText(popularity);
+        // Ako je popularnost veca ili jednaka nuli bojimo u zeleno, ako ne crvenimo ga
+        tvPopularity.setTextColor((post.getPopularity() >= 0) ? Color.GREEN : Color.RED);
+        tvPopularity.setText(Integer.toString(post.getPopularity()));
+
         tvAuthor.setText(post.getAuthor().getUsername());
 
 /*

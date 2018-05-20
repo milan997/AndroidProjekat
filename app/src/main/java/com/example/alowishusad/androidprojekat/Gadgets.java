@@ -15,6 +15,7 @@ public final class Gadgets {
     /**
      * Static method which shows a Progress Dialog, deprecated but who cares.
      * The method will show the progress dialog and it's up to the user to dismiss() it accordingly
+     * DISMISS NEEDS TO BE CALLED WHEN PROGRESS DIALOG IS NO LONGER NEEDED!!!! dialog.dismiss()
      * @param context - context of the activity to show progress dialog in (can be called by keyword 'this' in activity)
      * @return ProgressDialog
      */
@@ -26,6 +27,7 @@ public final class Gadgets {
         progressDialog.setTitle("");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.show();
+        progressDialog.setCancelable(false);
         return progressDialog;
     }
 
