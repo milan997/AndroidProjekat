@@ -7,4 +7,10 @@
         android:title="@string/settings"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/btnCreatePost"
+        android:title="@string/create_post"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/write"
+        />
 </menu>

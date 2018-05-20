@@ -19,7 +19,8 @@ public class Post implements Serializable, Comparable<Post>{
     private String description;
     private Bitmap photo;
     private User author;
-    private Date date = new Date();
+    private String authorUsername;
+    private Date date;
     private Location location;
     private List<Tag> tags = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
@@ -29,6 +30,7 @@ public class Post implements Serializable, Comparable<Post>{
     public Post(){
 
     }
+
 
     public Post(String title, String description){
         this.title = title;

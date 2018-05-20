@@ -1,11 +1,9 @@
 package com.example.alowishusad.androidprojekat;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,27 +12,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import adapters.PostAdapter;
-import model.Data;
 import model.Post;
-import model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
+import services.PostService;
 import services.RetrofitObject;
 
 public class PostsActivity extends AppCompatActivity  /*implements NavigationView.OnNavigationItemSelectedListener  */{
 
-    private ArrayList<Post> posts;
+    private List<Post> posts;
     private ListView listView;
 
     private Toolbar toolbar;
@@ -55,73 +51,50 @@ public class PostsActivity extends AppCompatActivity  /*implements NavigationVie
 
         mDrawerLayout = findViewById(R.id.drawerLayout);
 
-        // Preuzimamo dummy listu iz klase Data
-        posts = Data.posts;
-
-        // Pozivamo funkciju za sortiranje
-        sortPostsByPreference(posts);
-
-        PostAdapter adapter = new PostAdapter(this, posts);
         listView = findViewById(R.id.listViewPosts);
-        listView.setAdapter(adapter);
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Post post = (Post) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getApplicationContext(), ReadPostActivity.class);
+                intent.putExtra("postId", post.getId());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-
+/*
         posts = Data.posts;
         sortPostsByPreference(posts);
         PostAdapter adapter = new PostAdapter(this, posts);
         listView = findViewById(R.id.listViewPosts);
         listView.setAdapter(adapter);
+*/
+        PostService postService = RetrofitObject.retrofit.create(PostService.class);
+        Call<List<Post>> call = postService.getAll();
+
+        final ProgressDialog progressDialog = Gadgets.getProgressDialog(this);
 
 
-        // OVO RADI DO DOLE GADJAM USERE
-        /*
-        UserService userService = RetrofitObject.retrofit.create(UserService.class);
-        Call<List<User>> call = userService.getAll();
-        call.enqueue(new Callback<List<User>>() {
-
+        call.enqueue(new Callback<List<Post>>() {
             @Override
-            public void onResponse(Call<List<User>> users, Response<List<User>> response){
-                List <User> us = new ArrayList<>();
-                try {
-                    us = response.body();
-                } catch (Exception e) { e.printStackTrace(); }
-                Toast.makeText(getApplicationContext(), us.get(0).getUsername(), Toast.LENGTH_LONG).show();
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                progressDialog.dismiss();
+                posts = response.body();
+                sortPostsByPreference();
+                PostAdapter adapter = new PostAdapter(getApplicationContext(), posts);
+                listView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<List<User>> users ,Throwable t) {
-                Toast.makeText(getApplicationContext(), "ERROR FETCHING DATA!!!", Toast.LENGTH_LONG).show();
-            }
-        });
-        */
-        // OVO SVE FUL GORE
-
-        // OVO JE SAMO JEDAN OBJEKAT PRIMA
-        /*
-        UserService userService = RetrofitObject.retrofit.create(UserService.class);
-        Call<User> call = userService.getOne(3);
-        call.enqueue(new Callback<User>() {
-
-            @Override
-            public void onResponse(Call<User> users, Response<User> response){
-                User us = null;
-                try {
-                    us = response.body();
-                } catch (Exception e) { e.printStackTrace(); }
-                Toast.makeText(getApplicationContext(), (us==null)?"user nije nadjen":us.getUsername(), Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(Call<User> user ,Throwable t) {
-                Toast.makeText(getApplicationContext(), "ERROR FETCHING DATA!!!", Toast.LENGTH_LONG).show();
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "nije uspjeo", Toast.LENGTH_LONG).show();
             }
         });
-        */
 
     }
 
@@ -140,9 +113,11 @@ public class PostsActivity extends AppCompatActivity  /*implements NavigationVie
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id. btnSettings) {
+        if (id == R.id.btnSettings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+        } else if (id == R.id.btnCreatePost) {
+            startActivity(new Intent(this, CreatePostActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -150,10 +125,12 @@ public class PostsActivity extends AppCompatActivity  /*implements NavigationVie
 
     /**
      * Function to sort posts list by the user's preference stored in ListPreference lpSortPostsBy
-     * @param posts - ArrayList<Post> a list to sort
+     *
      */
-    public void sortPostsByPreference(ArrayList<Post> posts){
+    public void sortPostsByPreference(){
         // PO cemu da sortiramo ???  ?? ? ?
+        if(posts == null || posts.isEmpty())
+            return;
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String sortPostsBy = sp.getString("lpSortPostsBy", "default123");
 
@@ -161,7 +138,7 @@ public class PostsActivity extends AppCompatActivity  /*implements NavigationVie
         if(sortPostsBy.equals("Date")) {
             Collections.sort(posts, new Comparator<Post>() {
                 @Override
-                public int compare(Post post1, Post post2) {
+                public int compare(Post post2, Post post1) {
                     return post1.getDate().compareTo(post2.getDate());
                 }
             });

@@ -14,6 +14,7 @@ import com.example.alowishusad.androidprojekat.R;
 import com.example.alowishusad.androidprojekat.ReadPostActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Comment;
 import model.Post;
@@ -22,7 +23,7 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
 
     private Context context;
 
-    public CommentAdapter(Context context, ArrayList<Comment> comments) {
+    public CommentAdapter(Context context, List<Comment> comments) {
         super(context, 0, comments);
         this.context = context;
     }
@@ -40,11 +41,12 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         TextView tvHome = convertView.findViewById(R.id.tvDescription);
         TextView tvDate = convertView.findViewById(R.id.tvPostDate);
         TextView tvPopularity = convertView.findViewById(R.id.tvPopularity);
+        TextView tvAuthor = convertView.findViewById(R.id.tvPosterName);
         // Populate the data into the template view using the data object
         tvName.setText(comment.getTitle());
         tvHome.setText(comment.getDescription());
         tvDate.setText(comment.getDate().toString().substring(3,16));
-
+        tvAuthor.setText((comment.getAuthor() != null) ? comment.getAuthor().getUsername() : "noatuhor");
 
         String popularity = Integer.toString(comment.getPopularity());
         if (comment.getPopularity()> 0){

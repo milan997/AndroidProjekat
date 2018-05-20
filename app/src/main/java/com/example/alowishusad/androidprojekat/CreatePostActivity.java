@@ -1,5 +1,6 @@
 package com.example.alowishusad.androidprojekat;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.content.Intent;
@@ -9,11 +10,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import model.Post;
+import model.User;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import services.PostService;
+import services.RetrofitObject;
 
 
 public class CreatePostActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +36,11 @@ public class CreatePostActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -44,10 +61,59 @@ public class CreatePostActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+        } else if (id == R.id.btnConfirm) {
+            createPost();
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void createPost() {
+        TextView tvTitle = findViewById(R.id.etTitle);
+        TextView tvDescription = findViewById(R.id.etDescription);
+
+        String title = tvTitle.getEditableText().toString();
+        String description = tvDescription.getEditableText().toString();
+
+        if(title.isEmpty() || description.isEmpty()){
+            Gadgets.showSimpleOkDialog(this, "All fields are mandatory!!!");
+            return;
+        }
+
+        Post post = new Post();
+        User user = new User();
+        user.setId(getSharedPreferences("sp", MODE_PRIVATE).getInt("userId", 1));
+        post.setTitle(title);
+        post.setDescription(description);
+        post.setAuthor(user);
+
+        PostService postService = RetrofitObject.retrofit.create(PostService.class);
+        Call<Post> call = postService.createPost(post);
+        // ProgressDialog
+        final ProgressDialog progressDialog = Gadgets.getProgressDialog(this);
+
+        call.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                progressDialog.dismiss();
+                Post post = response.body();
+                if (post == null) {
+                    Toast.makeText(getApplicationContext(), "nesto je poslo po zluu!!! ", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Post created", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), PostsActivity.class));
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "greska prilikom kreiranja posta ", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
     // Function to be called when clicked on "photo" button
     public void btnOpenCamera(View view) {

@@ -1,45 +1,34 @@
 package services;
 
-import android.widget.Toast;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import model.User;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 
-/**
- * Class used for all services, e.g. calling spring rest controllers
- */
-public class UserService {
+public interface UserService {
+    @GET("api/users")
+    Call<List<User>> getAll (
+            // implementirat TODO
+    );
 
-    static UserServiceInterface userServiceInterface = RetrofitObject.retrofit.create(UserServiceInterface.class);
+    @GET("api/users/{userId}")
+    Call<User> getOne (
+            @Path("userId") int userId
+    );
 
-    // TODO KAKO OVO JEBEMU SVE KRVAVVO
-    public static List<User> getAll() {
-        final List<User> retval = new ArrayList<>();
-        Call<List<User>> call = userServiceInterface.getAll();
-        call.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> users, Response<List<User>> response) {
-                try {
-                    // TODO resi pa ono
-                    retval.add(response.body().get(0));
-                    retval.add(response.body().get(1));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<User>> users, Throwable t) {
-                //Toast.makeText(getApplicationContext(), "ERROR FETCHING DATA!!!", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        return retval;
-    }
-
+    /**
+     * A method used for logging in user. It searches for username and password matching, returns user if it exists, null if not
+     * @return User
+     */
+    @FormUrlEncoded
+    @POST("api/users/login")
+    Call<User> checkLogin(
+            @Field("username") String username,
+            @Field("password") String password
+    );
 }

@@ -17,6 +17,7 @@ import com.example.alowishusad.androidprojekat.ReadPostActivity;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Post;
 
@@ -24,7 +25,7 @@ public class PostAdapter  extends ArrayAdapter<Post>{
 
     private Context context;
 
-    public PostAdapter(Context context, ArrayList<Post> posts) {
+    public PostAdapter(Context context, List<Post> posts) {
         super(context, 0, posts);
         this.context = context;
     }
@@ -42,12 +43,13 @@ public class PostAdapter  extends ArrayAdapter<Post>{
         TextView tvHome = convertView.findViewById(R.id.tvDescription);
         TextView tvDate = convertView.findViewById(R.id.tvPostDate);
         TextView tvPopularity = convertView.findViewById(R.id.tvPopularity);
+        TextView tvAuthor = convertView.findViewById(R.id.tvPosterName);
         // Populate the data into the template view using the data object
         tvName.setText(post.getTitle());
         tvHome.setText(post.getDescription());
         //tvDate.setText(post.getDate().toString().substring(0,10) + post.getDate().toString().substring(23,29) );
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String strDate = dateFormat.format(post.getDate());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
+        String strDate = (post.getDate() != null) ? dateFormat.format(post.getDate()) : "nodate";
         tvDate.setText(strDate);
 
         String popularity = Integer.toString(post.getPopularity());
@@ -57,17 +59,20 @@ public class PostAdapter  extends ArrayAdapter<Post>{
             tvPopularity.setTextColor(Color.RED);
         }
         tvPopularity.setText(popularity);
+        tvAuthor.setText(post.getAuthor().getUsername());
 
-
+/*
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ReadPostActivity.class);
+                Intent intent = new Intent(context, ReadPostActivity.class);
+                //Toast.makeText(context, )
                 intent.putExtra("post", post);
+                int i = 0;
                 context.startActivity(intent);
             }
         });
-
+*/
 
 
         // Return the completed view to render on screen
