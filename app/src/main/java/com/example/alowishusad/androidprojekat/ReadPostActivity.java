@@ -118,6 +118,8 @@ public class ReadPostActivity extends AppCompatActivity {
             public void onResponse(Call<Post> call, Response<Post> response) {
                 progressDialog.dismiss();
                 activityPost = response.body();
+                // generisemo location polje koje ne dobijamo od servera jer jbg
+                activityPost.generateLocation();
 
                 // Checking if the user can delete post , showing button if true
                 if(activityPost.getAuthor().getId() == loggedInUserId){

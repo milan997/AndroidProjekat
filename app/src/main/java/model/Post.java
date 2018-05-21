@@ -21,6 +21,8 @@ public class Post implements Serializable, Comparable<Post>{
     private User author;
     private String authorUsername;
     private Date date;
+    private double longitude;
+    private double latitude;
     private Location location;
     private List<Tag> tags = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
@@ -30,6 +32,7 @@ public class Post implements Serializable, Comparable<Post>{
     public Post(){
 
     }
+
 
 
     public Post(String title, String description){
@@ -57,6 +60,16 @@ public class Post implements Serializable, Comparable<Post>{
 
     public void dislike(){
         this.dislikes++;
+    }
+
+    /**
+     * Metoda koja setuje location polje objekta koristeci polja longitude i latitude
+     */
+    public void generateLocation(){
+        Location location = new Location("ja provajdovo");
+        location.setLongitude(this.longitude);
+        location.setLatitude(this.latitude);
+        this.location = location;
     }
 
     @Override
@@ -122,12 +135,36 @@ public class Post implements Serializable, Comparable<Post>{
         this.date = date;
     }
 
+    public double getLongitude(){
+        return this.longitude;
+    }
+
+    public void setLongitude(double longitude){
+        this.longitude = longitude;
+    }
+
+    public double getLatitude(){
+        return this.latitude;
+    }
+
+    public void setLatitude(double latitude){
+        this.latitude = latitude;
+    }
+
     public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
+
+        // AKO SETUJEMO LOCATION SETUJE SE I LOGITUDE I NATLALTLTA
+        this.latitude = location.getLatitude();
+        this.longitude = location.getLongitude();
+    }
+
+    public void makeLocation(double latitude, double longitude){
+
     }
 
     public List<Tag> getTags() {

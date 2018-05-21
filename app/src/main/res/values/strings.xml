@@ -1,4 +1,9 @@
 <resources>
+
+    <!--GOOGLE MAPS API KEY -->
+    <string name="api_key">AIzaSyAoV91Z45IXiCqJP_fAqW5AvLT8bvWVV4A</string>
+
+
     <string name="app_name">AndroidProjekat</string>
     <string name="title_activity_posts">PostsActivity</string>
     <string name="login">Login</string>

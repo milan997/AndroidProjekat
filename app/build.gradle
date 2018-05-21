@@ -29,11 +29,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-
+    // retrofit2 and gson
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 
+    // google maps
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
 
+    // location api
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 
 
 }
